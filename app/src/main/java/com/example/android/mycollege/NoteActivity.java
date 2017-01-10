@@ -20,12 +20,14 @@ public class NoteActivity extends AppCompatActivity {
     EditText txtScore04;
 
     Button getAverage;
+    Button reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
         ((EditText)findViewById(R.id.txt_average)).setText("0");
+        ((EditText)findViewById(R.id.txt_average)).setEnabled(false);
         txtScore01 = (EditText)findViewById(R.id.txt_score01);
         txtScore02 = (EditText)findViewById(R.id.txt_score02);
         txtScore03 = (EditText)findViewById(R.id.txt_score03);
@@ -46,6 +48,9 @@ public class NoteActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(((CheckBox)view).isChecked()){
                     txtScore01.setEnabled(true);
+                }else{
+                    txtScore01.setEnabled(false);
+                    txtScore01.setText("");
                 }
             }
         });
@@ -54,6 +59,9 @@ public class NoteActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(((CheckBox)view).isChecked()){
                     txtScore02.setEnabled(true);
+                }else{
+                    txtScore02.setEnabled(false);
+                    txtScore02.setText("");
                 }
             }
         });
@@ -61,7 +69,10 @@ public class NoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(((CheckBox)view).isChecked()){
-                    txtScore02.setEnabled(true);
+                    txtScore03.setEnabled(true);
+                }else{
+                    txtScore03.setEnabled(false);
+                    txtScore03.setText("");
                 }
             }
         });
@@ -69,7 +80,10 @@ public class NoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(((CheckBox)view).isChecked()){
-                    txtScore02.setEnabled(true);
+                    txtScore04.setEnabled(true);
+                }else{
+                    txtScore04.setEnabled(false);
+                    txtScore04.setText("");
                 }
             }
         });
@@ -100,11 +114,37 @@ public class NoteActivity extends AppCompatActivity {
                 if(countScore==0){
                     ((EditText)findViewById(R.id.txt_average)).setText("0");
                 }else{
+                    average = average/countScore;
                     ((EditText)findViewById(R.id.txt_average)).setText(""+average);
                 }
+            }
+        });
+
+        reset = (Button)findViewById(R.id.btn_reset);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((EditText)findViewById(R.id.txt_average)).setText("0.00");
+                txtScore01.setText("");
+                txtScore02.setText("");
+                txtScore03.setText("");
+                txtScore04.setText("");
+
+                txtScore01.setEnabled(false);
+                txtScore02.setEnabled(false);
+                txtScore03.setEnabled(false);
+                txtScore04.setEnabled(false);
+
+                cbxSessio01.setChecked(false);
+                cbxSessio02.setChecked(false);
+                cbxSessio03.setChecked(false);
+                cbxSessio04.setChecked(false);
 
             }
         });
+
+
+
 
 
 
