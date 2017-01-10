@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MyCollege</string>
+    <string name="note_session_01">Session 01</string>
+    <string name="note_session_02">Session 02</string>
+    <string name="note_session_03">Session 03</string>
+    <string name="note_session_04">Session 04</string>
+    <string name="note_btn_reset">reset</string>
+    <string name="note_btn_average">Average</string>
+    <string name="note_present">Present</string>
+    <string name="note_avg">Average</string>
+    <string name="note_hint">Score</string>
 </resources>

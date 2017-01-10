@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mi Academia</string>
+    <string name="note_session_01">Sesión 1</string>
+    <string name="note_session_02">Sesión 2</string>
+    <string name="note_session_03">Sesión 3</string>
+    <string name="note_session_04">Sesión 4</string>
+    <string name="note_btn_reset">Reiniciar</string>
+    <string name="note_btn_average">Promediar</string>
+    <string name="note_present">Asistió</string>
+    <string name="note_avg">Promedio</string>
+    <string name="note_hint">Nota</string>
+</resources>
