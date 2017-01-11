@@ -10,4 +10,8 @@
     <string name="note_present">Asistió</string>
     <string name="note_avg">Promedio</string>
     <string name="note_hint">Nota</string>
+    <string name="note_session_05">Sesión 5</string>
+    <string name="note_session_06">Sesión 6</string>
+    <string name="note_session_07">Sesión 7</string>
+    <string name="note_session_08">Sesión 8</string>
 </resources>

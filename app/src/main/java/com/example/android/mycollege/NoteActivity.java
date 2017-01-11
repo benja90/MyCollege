@@ -1,92 +1,53 @@
 package com.example.android.mycollege;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NoteActivity extends AppCompatActivity {
-
-    CheckBox cbxSessio01;//To know check state
-    CheckBox cbxSessio02;
-    CheckBox cbxSessio03;
-    CheckBox cbxSessio04;
-
-    EditText txtScore01;
-    EditText txtScore02;
-    EditText txtScore03;
-    EditText txtScore04;
 
     Button getAverage;
     Button reset;
-
+    InputMethodManager iMM;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
-        ((EditText)findViewById(R.id.txt_average)).setText("0");
+        iMM = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        ((EditText)findViewById(R.id.txt_average)).setText("0.00");
         ((EditText)findViewById(R.id.txt_average)).setEnabled(false);
-        txtScore01 = (EditText)findViewById(R.id.txt_score01);
-        txtScore02 = (EditText)findViewById(R.id.txt_score02);
-        txtScore03 = (EditText)findViewById(R.id.txt_score03);
-        txtScore04 = (EditText)findViewById(R.id.txt_score04);
 
-        txtScore01.setEnabled(false);
-        txtScore02.setEnabled(false);
-        txtScore03.setEnabled(false);
-        txtScore04.setEnabled(false);
 
-        cbxSessio01 = (CheckBox)findViewById(R.id.cbx_score01);
-        cbxSessio02 = (CheckBox)findViewById(R.id.cbx_score02);
-        cbxSessio03 = (CheckBox)findViewById(R.id.cbx_score03);
-        cbxSessio04 = (CheckBox)findViewById(R.id.cbx_score04);
-
-        cbxSessio01.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(((CheckBox)view).isChecked()){
-                    txtScore01.setEnabled(true);
-                }else{
-                    txtScore01.setEnabled(false);
-                    txtScore01.setText("");
+        final List<View[]> allScore = new ArrayList<>();
+        allScore.add(new View[]{findViewById(R.id.cbx_score01),findViewById(R.id.txt_score01)});
+        allScore.add(new View[]{findViewById(R.id.cbx_score02),findViewById(R.id.txt_score02)});
+        allScore.add(new View[]{findViewById(R.id.cbx_score03),findViewById(R.id.txt_score03)});
+        allScore.add(new View[]{findViewById(R.id.cbx_score04),findViewById(R.id.txt_score04)});
+        allScore.add(new View[]{findViewById(R.id.cbx_score05),findViewById(R.id.txt_score05)});
+        allScore.add(new View[]{findViewById(R.id.cbx_score06),findViewById(R.id.txt_score06)});
+        allScore.add(new View[]{findViewById(R.id.cbx_score07),findViewById(R.id.txt_score07)});
+        allScore.add(new View[]{findViewById(R.id.cbx_score08),findViewById(R.id.txt_score08)});
+        for (View[] views : allScore) {
+            final CheckBox cbxTemp = (CheckBox)views[0];
+            final EditText textTemp = (EditText)views[1];
+            iMM.showSoftInput(textTemp, InputMethodManager.SHOW_IMPLICIT);
+            textTemp.setEnabled(false);
+            cbxTemp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    enableEditor(cbxTemp, textTemp);
                 }
-            }
-        });
-        cbxSessio02.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(((CheckBox)view).isChecked()){
-                    txtScore02.setEnabled(true);
-                }else{
-                    txtScore02.setEnabled(false);
-                    txtScore02.setText("");
-                }
-            }
-        });
-        cbxSessio03.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(((CheckBox)view).isChecked()){
-                    txtScore03.setEnabled(true);
-                }else{
-                    txtScore03.setEnabled(false);
-                    txtScore03.setText("");
-                }
-            }
-        });
-        cbxSessio04.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(((CheckBox)view).isChecked()){
-                    txtScore04.setEnabled(true);
-                }else{
-                    txtScore04.setEnabled(false);
-                    txtScore04.setText("");
-                }
-            }
-        });
+            });
+        }
 
         getAverage = (Button)findViewById(R.id.btn_average);
         getAverage.setOnClickListener(new View.OnClickListener() {
@@ -95,28 +56,16 @@ public class NoteActivity extends AppCompatActivity {
                 double average = 0.0;
                 int countScore = 0;
 
-                if(checkCorrectScoreValue(txtScore01)){
+                for (View[] views : allScore) {
                     countScore++;
-                    average += Integer.parseInt(txtScore01.getText().toString());
+                    if(checkCorrectScoreValue((EditText)views[1])){
+                        average +=  Integer.parseInt(((EditText)views[1]).getText().toString());
+                    }
                 }
-                if(checkCorrectScoreValue(txtScore02)){
-                    countScore++;
-                    average += Integer.parseInt(txtScore02.getText().toString());
-                }
-                if(checkCorrectScoreValue(txtScore03)){
-                    countScore++;
-                    average += Integer.parseInt(txtScore03.getText().toString());
-                }
-                if(checkCorrectScoreValue(txtScore04)){
-                    countScore++;
-                    average += Integer.parseInt(txtScore04.getText().toString());
-                }
-                if(countScore==0){
-                    ((EditText)findViewById(R.id.txt_average)).setText("0");
-                }else{
-                    average = average/countScore;
-                    ((EditText)findViewById(R.id.txt_average)).setText(""+average);
-                }
+
+                 average = average/countScore;
+                 ((EditText)findViewById(R.id.txt_average)).setText(""+average);
+
             }
         });
 
@@ -125,32 +74,14 @@ public class NoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ((EditText)findViewById(R.id.txt_average)).setText("0.00");
-                txtScore01.setText("");
-                txtScore02.setText("");
-                txtScore03.setText("");
-                txtScore04.setText("");
 
-                txtScore01.setEnabled(false);
-                txtScore02.setEnabled(false);
-                txtScore03.setEnabled(false);
-                txtScore04.setEnabled(false);
-
-                cbxSessio01.setChecked(false);
-                cbxSessio02.setChecked(false);
-                cbxSessio03.setChecked(false);
-                cbxSessio04.setChecked(false);
-
+                for (View[] views : allScore) {
+                    ((CheckBox)views[0]).setChecked(false);
+                    ((EditText)views[1]).setEnabled(false);
+                    ((EditText)views[1]).setText("");
+                }
             }
         });
-
-
-
-
-
-
-
-
-
 
 
     }
@@ -168,5 +99,16 @@ public class NoteActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    public void enableEditor(CheckBox checkBox, EditText editText){
+        if(checkBox.isChecked()){
+            editText.setEnabled(true);
+            editText.requestFocus();
+            iMM.showSoftInput(editText,InputMethodManager.SHOW_IMPLICIT);
+        }else{
+            editText.setEnabled(false);
+            editText.setText("");
+        }
     }
 }
