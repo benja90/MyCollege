@@ -13,4 +13,17 @@
     <string name="note_session_06">Session 06</string>
     <string name="note_session_07">Session 07</string>
     <string name="note_session_08">Session 08</string>
+    <string name="login_title">My College App</string>
+    <string name="login_message_log">Please enter user and password</string>
+    <string name="login_txt_user">User</string>
+    <string name="login_txt_passwd">Password</string>
+    <string name="login_btn_signin">Sign In</string>
+    <string name="login_btn_signup">Sign Up</string>
+    <string name="login_label_rememberme">Remember me</string>
+    <string name="create_btn_change_image">Change</string>
+    <string name="create_name">Name</string>
+    <string name="create_last_name">Last Name</string>
+    <string name="create_mail">E-mail</string>
+    <string name="create_cellphone">Cellphone</string>
+    <string name="create_address">Address</string>
 </resources>
