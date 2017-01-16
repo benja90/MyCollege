@@ -2,6 +2,7 @@ package com.example.android.mycollege.staticDataBase;
 
 import com.example.android.mycollege.model.Course;
 import com.example.android.mycollege.model.Student;
+import com.example.android.mycollege.model.Teacher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +14,10 @@ import java.util.List;
 public class GetStaticData {
     private static GetStaticData instace = null;
     private static String currentStudent = "";
+    private static String currentTeacher = "";
 
     private List<Student> dataStudent;
+    private List<Teacher> teacherList;
 
     protected GetStaticData(){
         loadData();
@@ -41,7 +44,29 @@ public class GetStaticData {
     public void setCurrentStudent(String studentUser){
         currentStudent = studentUser;
     }
+    public Teacher getCurrentTeacher(){
+        return getTeacher(currentTeacher);
+    }
+    public Teacher getTeacher(String user){
+
+        for (Teacher teacher : teacherList) {
+            if(teacher.getUser().equals(user))
+                return teacher;
+        }
+        return new Teacher();
+    }
+
+    public void setCurrentTeacher(String teacherUser){
+        currentTeacher = teacherUser;
+    }
+
     private void loadData(){
+
+        Teacher teacher = new Teacher("Benjamin Mamani", "benja", "123456");
+        teacherList = new ArrayList<>();
+        teacherList.add(teacher);
+
+
         dataStudent = new ArrayList<>();
         Student studentTest01 = new Student();
         studentTest01.setAddress("Malecon Balta 678, Miraflores");

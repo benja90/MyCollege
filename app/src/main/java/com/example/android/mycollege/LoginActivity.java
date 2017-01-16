@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.android.mycollege.model.Student;
+import com.example.android.mycollege.model.Teacher;
 import com.example.android.mycollege.staticDataBase.GetStaticData;
 
 public class LoginActivity extends AppCompatActivity {
@@ -42,9 +43,9 @@ public class LoginActivity extends AppCompatActivity {
                 EditText password = (EditText) findViewById(R.id.login_password);
 
                 GetStaticData data = GetStaticData.getInstace();
-                Student userStudent = data.getStudientTest(user.getText().toString());
-                if(userStudent.getName() != ""){
-                    data.setCurrentStudent(userStudent.getUser());
+                Teacher teacherUser = data.getTeacher(user.getText().toString());
+                if(teacherUser.getName() != ""){
+                    data.setCurrentTeacher(teacherUser.getUser());
                     Intent intent = new Intent(LoginActivity.this, CourseListActivity.class);
                     startActivity(intent);
                 }else{

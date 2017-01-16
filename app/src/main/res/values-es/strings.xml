@@ -29,4 +29,6 @@
     <string name="create_last_name">Apellido</string>
     <string name="courseList_title">"Lista de cursos "</string>
     <string name="courseList_manageAccount">Administrar cuenta</string>
+    <string name="create_latitude">Latitud</string>
+    <string name="create_longitude">Longitud</string>
 </resources>
