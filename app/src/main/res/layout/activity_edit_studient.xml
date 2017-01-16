@@ -133,6 +133,11 @@ android:orientation="vertical">
                 android:layout_height="wrap_content"
                 android:inputType="number"/>
         </LinearLayout>
+        <Button
+            android:id="@+id/edit_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_save"/>
     </LinearLayout>
 </ScrollView>
 </LinearLayout>

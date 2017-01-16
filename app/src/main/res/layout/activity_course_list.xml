@@ -22,12 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="20"/>
-        <Button
-            android:id="@+id/course_list_btn_manager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/courseList_manageAccount"
-            />
+
 
 </LinearLayout>

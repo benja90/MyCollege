@@ -30,4 +30,7 @@
     <string name="courseList_manageAccount">Manager Account</string>
     <string name="create_latitude">Latitude</string>
     <string name="create_longitude">Longitude</string>
+    <string name="list_student_add">Add New Student</string>
+    <string name="button_save">Save</string>
+    <string name="button_edit">Edit</string>
 </resources>

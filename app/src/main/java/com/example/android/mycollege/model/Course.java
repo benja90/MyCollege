@@ -11,16 +11,26 @@ import static android.R.attr.requireDeviceUnlock;
  */
 
 public class Course {
-    int sessionCount = 0;
-    String name = "";
-    String _id = "";
-    String id_studient = "";
+    private int sessionCount = 0;
+    private String name = "";
+    private String _id = "";
+    private ArrayList<Student> studentList;
+
     List<Session> sessions;
 
     public Course(String name){
         this.name = name;
         sessions = new ArrayList<>();
+        studentList = new ArrayList<>();
     }
+    public Course(String name, int sessionCount, String _id){
+        this.name = name;
+        sessions = new ArrayList<>();
+        studentList = new ArrayList<>();
+        this.sessionCount = sessionCount;
+        this._id = _id;
+    }
+
 
     public String getName(){
         return name;
@@ -36,5 +46,12 @@ public class Course {
         }else{
             return 0.0;
         }
+    }
+
+    public void addStudent(Student student){
+        studentList.add(student);
+    }
+    public ArrayList<Student> getStudentList(){
+        return studentList;
     }
 }

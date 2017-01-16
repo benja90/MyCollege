@@ -34,12 +34,10 @@ public class CourseAdapter extends ArrayAdapter<Course> {
         }
 
         Course course = getItem(position);
-        TextView score  = (TextView)listItemView.findViewById(R.id.list_course_score_total);
         TextView name   = (TextView)listItemView.findViewById(R.id.list_course_score_name);
 
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         name.setText(course.getName());
-        score.setText(decimalFormat.format(course.getAverage()));
 
         return listItemView;
     }
