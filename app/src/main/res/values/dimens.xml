@@ -5,4 +5,5 @@
     <dimen name="activity_note_vertical_scoreText">8dp</dimen>
     <dimen name="activity_login_title">16sp</dimen>
     <dimen name="activity_create_studient_heigth">150dp</dimen>
+    <dimen name="list_studient_course_score_text">36dp</dimen>
 </resources>

@@ -26,4 +26,6 @@
     <string name="create_mail">E-mail</string>
     <string name="create_cellphone">Cellphone</string>
     <string name="create_address">Address</string>
+    <string name="courseList_title">Course List</string>
+    <string name="courseList_manageAccount">Manager Account</string>
 </resources>

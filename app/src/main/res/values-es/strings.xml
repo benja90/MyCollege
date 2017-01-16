@@ -27,4 +27,6 @@
     <string name="create_cellphone">Celular</string>
     <string name="create_address">Dirección</string>
     <string name="create_last_name">Apellido</string>
+    <string name="courseList_title">"Lista de cursos "</string>
+    <string name="courseList_manageAccount">Administrar cuenta</string>
 </resources>
