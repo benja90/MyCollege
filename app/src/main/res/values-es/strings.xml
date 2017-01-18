@@ -34,4 +34,9 @@
     <string name="list_student_add">Agregar nuevo estudiante</string>
     <string name="button_save">Guardar</string>
     <string name="button_edit">Editar</string>
+    <string name="menu_save">Guardar</string>
+    <string name="menu_delete">Borrar</string>
+    <string name="menu_add">Nuevo</string>
+    <string name="menu_update">Editar</string>
+    <string name="create_title">Crear Nuevo Alumno</string>
 </resources>

@@ -4,16 +4,6 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <Button
-            android:id="@+id/course_list_btn_new_student"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/list_student_add"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <ListView

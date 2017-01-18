@@ -1,14 +1,22 @@
 package com.example.android.mycollege;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatSpinner;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.android.mycollege.model.Student;
 import com.example.android.mycollege.staticDataBase.GetStaticData;
@@ -16,6 +24,7 @@ import com.example.android.mycollege.staticDataBase.GetStaticData;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.android.mycollege.staticDataBase.GetStaticData.getInstace;
 import static com.example.android.mycollege.staticDataBase.GetStaticData.student;
 
 public class NoteActivity extends AppCompatActivity {
@@ -28,7 +37,7 @@ public class NoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
-        final Student student = GetStaticData.getInstace().getCurrentStudent();
+        final Student student = getInstace().getCurrentStudent();
 
 
 
@@ -96,7 +105,7 @@ public class NoteActivity extends AppCompatActivity {
                  //((EditText)findViewById(R.id.txt_average)).setText(""+average);
                  ((EditText)findViewById(R.id.txt_average)).setText(student.getAverage());
 
-                GetStaticData.getInstace().getCurrentCourse().getStudentList().set(GetStaticData.currentStudentPosition,student);
+                getInstace().getCurrentCourse().getStudentList().set(GetStaticData.currentStudentPosition,student);
 
             }
         });
@@ -121,19 +130,19 @@ public class NoteActivity extends AppCompatActivity {
                 student.session06 = saveValues((EditText)findViewById(R.id.txt_score06));
                 student.session07 = saveValues((EditText)findViewById(R.id.txt_score07));
                 student.session08 = saveValues((EditText)findViewById(R.id.txt_score08));
-                GetStaticData.getInstace().getCurrentCourse().getStudentList().set(GetStaticData.currentStudentPosition,student);
+                getInstace().getCurrentCourse().getStudentList().set(GetStaticData.currentStudentPosition,student);
             }
         });
 
 
-        Button updateStudient = (Button)findViewById(R.id.note_edit_student);
-        updateStudient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(NoteActivity.this, EditStudientActivity.class);
-                startActivity(intent);
-            }
-        });
+
+        getSupportActionBar().setTitle(student.getName()+" "+student.getLastName());
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+
     }
 
     public boolean checkCorrectScoreValue(EditText text){
@@ -189,5 +198,52 @@ public class NoteActivity extends AppCompatActivity {
                 return Integer.parseInt(data);
         }
         return 0;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_scores, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home: onBackPressed(); break;
+            case R.id.menu_scores_delete:
+                Log.i("DEBV", "ELEMIN");
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                builder.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        ////DELETE
+
+                        Student student = GetStaticData.getInstace().getCurrentStudent();
+                        GetStaticData.getInstace().getCurrentCourse().getStudentList().remove(student);
+                        Toast toast =Toast.makeText(getApplicationContext(),"ActionComplete", Toast.LENGTH_SHORT);
+                        toast.show();
+                        onBackPressed();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        ////DELETE
+                    }
+                });
+
+                builder.setTitle("CONFIRM");
+                builder.setMessage("REALLY?");
+                builder.show();
+
+
+                break;
+            case R.id.menu_scores_update:
+                Intent intent = new Intent(getApplicationContext(), EditStudientActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+        return true;
     }
 }

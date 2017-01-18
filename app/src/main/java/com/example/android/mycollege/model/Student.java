@@ -15,8 +15,8 @@ public class Student {
     private String email = "";
     private String cellPhone = "";
     private String address = "";
-    private double latitud = 0;
-    private double longitud = 0;
+    private int latitud = 0;
+    private int longitud = 0;
     int foto;
     List<Course> courses = new ArrayList<>();
 
@@ -76,19 +76,19 @@ public class Student {
         this.courses.add(course);
     }
 
-    public double getLatitud() {
+    public int getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(double latitud) {
+    public void setLatitud(int latitud) {
         this.latitud = latitud;
     }
 
-    public double getLongitud() {
+    public int getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(double longitud) {
+    public void setLongitud(int longitud) {
         this.longitud = longitud;
     }
 

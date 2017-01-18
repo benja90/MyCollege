@@ -6,22 +6,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.android.mycollege.model.Student;
 import com.example.android.mycollege.staticDataBase.GetStaticData;
 
+import static com.example.android.mycollege.staticDataBase.GetStaticData.student;
+
 public class EditStudientActivity extends AppCompatActivity {
 
+    final Student student = GetStaticData.getInstace().getCurrentStudent();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_studient);
 
         GetStaticData staticData = GetStaticData.getInstace();
-        final Student student = staticData.getCurrentStudent();
+
 
         ((EditText)findViewById(R.id.edit_name)).setText(student.getName());
         ((EditText)findViewById(R.id.edit_address)).setText(student.getAddress());
@@ -35,6 +41,29 @@ public class EditStudientActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+            }
+        });
+
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_update_student, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home: onBackPressed(); break;
+            case R.id.menu_update_student_save:
                 student.setName(((EditText) findViewById(R.id.edit_name)).getText().toString());
                 student.setLastName(((EditText) findViewById(R.id.edit_last_name)).getText().toString());
                 student.setAddress(((EditText) findViewById(R.id.edit_address)).getText().toString());
@@ -51,14 +80,16 @@ public class EditStudientActivity extends AppCompatActivity {
                     Log.e("Err", ec.getLocalizedMessage());
                 }
 
-
-
-
+                Toast toast =Toast.makeText(getApplicationContext(),"ActionComplete", Toast.LENGTH_SHORT);
+                toast.show();
                 GetStaticData.getInstace().getCurrentCourse().getStudentList().set(GetStaticData.currentStudentPosition, student);
+                onBackPressed();
 
-            }
-        });
+                break;
 
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

@@ -33,4 +33,9 @@
     <string name="list_student_add">Add New Student</string>
     <string name="button_save">Save</string>
     <string name="button_edit">Edit</string>
+    <string name="menu_save">Save</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_add">Add</string>
+    <string name="menu_update">Edit</string>
+    <string name="create_title">Create New Student</string>
 </resources>

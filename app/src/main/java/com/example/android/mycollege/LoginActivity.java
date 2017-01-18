@@ -44,13 +44,16 @@ public class LoginActivity extends AppCompatActivity {
 
                 GetStaticData data = GetStaticData.getInstace();
                 Teacher teacherUser = data.getTeacher(user.getText().toString());
-                if(teacherUser.getName() != ""){
+               /* if(teacherUser.getName() != ""){
                     data.setCurrentTeacher(teacherUser.getUser());
                     Intent intent = new Intent(LoginActivity.this, CourseListActivity.class);
                     startActivity(intent);
                 }else{
                      ((EditText) findViewById(R.id.login_user)).setText("INCORRECT USER");
-                }
+                }*/
+                data.setCurrentTeacher("benja");
+                Intent intent = new Intent(LoginActivity.this, CourseListActivity.class);
+                startActivity(intent);
             }
         });
     }
