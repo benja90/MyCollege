@@ -28,7 +28,7 @@ import static com.example.android.mycollege.staticDataBase.GetStaticData.getInst
 import static com.example.android.mycollege.staticDataBase.GetStaticData.student;
 
 public class NoteActivity extends AppCompatActivity {
-
+    final private String LOG_TAG = NoteActivity.class.getSimpleName();
     Button getAverage;
     Button reset;
     InputMethodManager iMM;
@@ -37,7 +37,17 @@ public class NoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
-        final Student student = getInstace().getCurrentStudent();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String idStudent = bundle.get("idStudent")+"";
+
+        Log.i(LOG_TAG, idStudent);
+
+
+        int indexStudent = Integer.parseInt(idStudent);
+
+
+        final Student student = GetStaticData.getInstace().getStudent(indexStudent);//getInstace().getCurrentStudent();
 
 
 
@@ -105,8 +115,8 @@ public class NoteActivity extends AppCompatActivity {
                  //((EditText)findViewById(R.id.txt_average)).setText(""+average);
                  ((EditText)findViewById(R.id.txt_average)).setText(student.getAverage());
 
-                getInstace().getCurrentCourse().getStudentList().set(GetStaticData.currentStudentPosition,student);
-
+               // getInstace().getCurrentCourse().getStudentList().set(GetStaticData.currentStudentPosition,student);
+                GetStaticData.getInstace().setStudent(student);
             }
         });
 
@@ -130,7 +140,8 @@ public class NoteActivity extends AppCompatActivity {
                 student.session06 = saveValues((EditText)findViewById(R.id.txt_score06));
                 student.session07 = saveValues((EditText)findViewById(R.id.txt_score07));
                 student.session08 = saveValues((EditText)findViewById(R.id.txt_score08));
-                getInstace().getCurrentCourse().getStudentList().set(GetStaticData.currentStudentPosition,student);
+                GetStaticData.getInstace().setStudent(student);
+                //getInstace().getCurrentCourse().getStudentList().set(GetStaticData.currentStudentPosition,student);
             }
         });
 
@@ -212,7 +223,7 @@ public class NoteActivity extends AppCompatActivity {
             case android.R.id.home: onBackPressed(); break;
             case R.id.menu_scores_delete:
                 Log.i("DEBV", "ELEMIN");
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -246,4 +257,7 @@ public class NoteActivity extends AppCompatActivity {
 
         return true;
     }
+
+
+
 }

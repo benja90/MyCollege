@@ -1,5 +1,7 @@
 package com.example.android.mycollege.model;
 
+import com.example.android.mycollege.staticDataBase.GetStaticData;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.List;
 
 public class Student {
     String _id = "";
+    private int internal_id = 0;
     private String name = "";
     private String lastName = "";
     private String email = "";
@@ -96,5 +99,18 @@ public class Student {
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
         double average = (session01+session02+session03+session04+session05+session06+session07+session08)/8;
         return decimalFormat.format(average);
+    }
+
+    public int getInternal_id() {
+        return internal_id;
+    }
+
+    public void setInternal_id(int internal_id) {
+        this.internal_id = internal_id;
+    }
+
+    public Student(){
+        GetStaticData.currentId += 1;
+        internal_id = GetStaticData.currentId;
     }
 }

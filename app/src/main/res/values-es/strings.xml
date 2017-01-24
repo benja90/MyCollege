@@ -39,4 +39,5 @@
     <string name="menu_add">Nuevo</string>
     <string name="menu_update">Editar</string>
     <string name="create_title">Crear Nuevo Alumno</string>
+    <string name="confirm_title">Confirmar acción</string>
 </resources>

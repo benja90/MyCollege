@@ -19,7 +19,8 @@
         <activity android:name=".CreateStudientActivity" />
         <activity android:name=".EditStudientActivity" />
         <activity android:name=".StudentListActivity" />
-        <activity android:name=".CourseListActivity"></activity>
+        <activity android:name=".CourseListActivity" />
+        <activity android:name=".GridViewActivity"></activity>
     </application>
 
 </manifest>

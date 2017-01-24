@@ -7,6 +7,8 @@ import com.example.android.mycollege.model.Teacher;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.id;
+
 /**
  * Created by benjamin.mamani on 16/01/2017.
  */
@@ -19,6 +21,7 @@ public class GetStaticData {
     public static Student student = new Student();
     public static int currentCoursePosition = 0;
     public static int currentStudentPosition = 0;
+    public static int currentId = 1;
 
     private List<Student> dataStudent;
     private List<Teacher> teacherList;
@@ -103,6 +106,24 @@ public class GetStaticData {
     }
     public Course getCurrentCourse(){
         return getCurrentTeacher().getCourseList().get(currentCoursePosition);
+    }
+
+    public Student getStudent(int i){
+        for (Student student1 : getCurrentCourse().getStudentList()) {
+            if(student1.getInternal_id() == i){
+                return student1;
+            }
+        }
+        return new Student();
+    }
+
+    public void setStudent(Student student){
+        for(int pointer = 0; pointer < getCurrentCourse().getStudentList().size(); pointer++){
+            if(getCurrentCourse().getStudentList().get(pointer).getInternal_id() == student.getInternal_id()){
+                getCurrentCourse().getStudentList().set(pointer, student);
+            }
+        }
+
     }
 
 }

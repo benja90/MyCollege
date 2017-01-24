@@ -2,6 +2,7 @@ package com.example.android.mycollege;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.os.Build.VERSION_CODES.M;
+import static com.example.android.mycollege.R.id.student_list_new;
 
 /**
  * Created by benjamin.mamani on 16/01/2017.
@@ -42,10 +44,25 @@ public class StudentListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 GetStaticData.getInstace().currentStudentPosition = i;
-                Intent intent = new Intent(StudentListActivity.this, NoteActivity.class);
+               // Intent intent = new Intent(StudentListActivity.this, NoteActivity.class);
+               // startActivity(intent);
+            }
+        });
+
+        FloatingActionButton action = (FloatingActionButton)findViewById(R.id.student_list_new);
+        action.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),CreateStudientActivity.class);
                 startActivity(intent);
             }
         });
+
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(GetStaticData.getInstace().getCurrentCourse().getName());
+
+
 
     }
 
@@ -59,11 +76,13 @@ public class StudentListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.menu_list_student_add:
-                Intent intent = new Intent(getApplicationContext(),CreateStudientActivity.class);
-                startActivity(intent);
-                return true;
+            case android.R.id.home: onBackPressed(); break;
+
+            case R.id.menu_list_student_galery:
+                Intent intent2 = new Intent(getApplicationContext(),GridViewActivity.class);
+                startActivity(intent2);
+                break;
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 }

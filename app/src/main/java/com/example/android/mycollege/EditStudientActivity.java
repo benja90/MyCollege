@@ -1,5 +1,6 @@
 package com.example.android.mycollege;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 
@@ -16,14 +17,28 @@ import android.widget.Toast;
 import com.example.android.mycollege.model.Student;
 import com.example.android.mycollege.staticDataBase.GetStaticData;
 
+import java.util.Iterator;
+import java.util.Set;
+
+import static com.example.android.mycollege.staticDataBase.GetStaticData.getInstace;
 import static com.example.android.mycollege.staticDataBase.GetStaticData.student;
 
 public class EditStudientActivity extends AppCompatActivity {
-
-    final Student student = GetStaticData.getInstace().getCurrentStudent();
+    final String LOG_TAG = EditStudientActivity.class.getSimpleName();
+    private Student student;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String idStudent = bundle.get("idStudent")+"";//intent.getStringExtra("idStudent");
+
+        Log.i(LOG_TAG, idStudent);
+        int indexStudent = Integer.parseInt(idStudent);
+
+        student = GetStaticData.getInstace().getStudent(indexStudent);
+
         setContentView(R.layout.activity_edit_studient);
 
         GetStaticData staticData = GetStaticData.getInstace();
@@ -64,6 +79,8 @@ public class EditStudientActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home: onBackPressed(); break;
             case R.id.menu_update_student_save:
+
+
                 student.setName(((EditText) findViewById(R.id.edit_name)).getText().toString());
                 student.setLastName(((EditText) findViewById(R.id.edit_last_name)).getText().toString());
                 student.setAddress(((EditText) findViewById(R.id.edit_address)).getText().toString());
@@ -82,7 +99,9 @@ public class EditStudientActivity extends AppCompatActivity {
 
                 Toast toast =Toast.makeText(getApplicationContext(),"ActionComplete", Toast.LENGTH_SHORT);
                 toast.show();
-                GetStaticData.getInstace().getCurrentCourse().getStudentList().set(GetStaticData.currentStudentPosition, student);
+                GetStaticData.getInstace().setStudent(student);
+
+                //GetStaticData.getInstace().getCurrentCourse().getStudentList().set(GetStaticData.currentStudentPosition, student);
                 onBackPressed();
 
                 break;
